@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ercxan4e1yjp"]
+
+[ext_resource type="Script" path="res://src/parts/event/event_trigger.gd" id="1_38p63"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ktxi"]
+size = Vector2(22, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mupyi"]
+size = Vector2(22, 22)
+
+[node name="EventTrigger" type="Area2D" groups=["event"]]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_38p63")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3ktxi")
+
+[node name="InteractSquare" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractSquare"]
+shape = SubResource("RectangleShape2D_mupyi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="InteractSquare" to="." method="_on_interact_square_area_entered"]
+[connection signal="area_exited" from="InteractSquare" to="." method="_on_interact_square_area_exited"]

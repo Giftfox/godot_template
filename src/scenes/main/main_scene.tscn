@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw0e2fu0jm2ue"]
+
+[ext_resource type="Script" path="res://src/scenes/main/game_container.gd" id="1_3nmjs"]
+[ext_resource type="Script" path="res://src/scenes/main/gui_container.gd" id="1_78twm"]
+[ext_resource type="Script" path="res://src/scenes/main/GUIView.gd" id="1_422pu"]
+[ext_resource type="Script" path="res://src/scenes/main/game_view.gd" id="2_t7aes"]
+[ext_resource type="PackedScene" uid="uid://b3bnlan71aqgk" path="res://src/parts/GUI.tscn" id="3_p6y0h"]
+[ext_resource type="Script" path="res://src/scenes/main/global_music.gd" id="5_s2mcm"]
+[ext_resource type="Script" path="res://src/ui/dialogue/dialogue_controller.gd" id="7_umsqi"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="GUIContainer" type="SubViewportContainer" parent="."]
+process_mode = 3
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_78twm")
+
+[node name="GUIView" type="SubViewport" parent="GUIContainer"]
+disable_3d = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+script = ExtResource("1_422pu")
+
+[node name="GameContainer" type="SubViewportContainer" parent="GUIContainer/GUIView"]
+process_mode = 3
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+script = ExtResource("1_3nmjs")
+
+[node name="GameView" type="SubViewport" parent="GUIContainer/GUIView/GameContainer"]
+disable_3d = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+script = ExtResource("2_t7aes")
+
+[node name="EventTimer" type="Timer" parent="GUIContainer/GUIView/GameContainer/GameView" groups=["no_destroy"]]
+one_shot = true
+
+[node name="Music" type="Node2D" parent="GUIContainer/GUIView/GameContainer/GameView" groups=["no_destroy"]]
+script = ExtResource("5_s2mcm")
+
+[node name="GUI" parent="GUIContainer/GUIView" instance=ExtResource("3_p6y0h")]
+texture_filter = 1
+
+[node name="Screen" type="ColorRect" parent="GUIContainer/GUIView/GUI" groups=["no_destroy"]]
+modulate = Color(1, 1, 1, 0)
+z_index = 1000
+z_as_relative = false
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 760.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="DialogueController" type="Node2D" parent="GUIContainer/GUIView"]
+z_index = 1000
+script = ExtResource("7_umsqi")

@@ -1,0 +1,12 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://dah6hd1bjc1ge"]
+
+[ext_resource type="FontFile" uid="uid://mi24hkcfihxa" path="res://assets/fonts/Small.tres" id="1_yuwn4"]
+
+[resource]
+base_font = ExtResource("1_yuwn4")
+opentype_features = {
+1667329140: 0
+}
+spacing_glyph = 10
+spacing_space = 10
+spacing_bottom = -7

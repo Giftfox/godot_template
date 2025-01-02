@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfckjbjitiiyt"]
+
+[ext_resource type="Script" path="res://src/parts/camera_lock.gd" id="1_0hjrt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufyek"]
+size = Vector2(480, 240)
+
+[node name="CameraLock" type="Area2D" groups=["camlock"]]
+process_mode = 3
+z_index = 200
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_0hjrt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(240, 120)
+shape = SubResource("RectangleShape2D_ufyek")
+
+[node name="Shade" type="ColorRect" parent="."]
+visible = false
+z_index = 300
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.501961)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

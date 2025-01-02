@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpi1rsuyct0yp"]
+
+[ext_resource type="Script" path="res://src/ui/dialogue/dialogue_portrait.gd" id="1_8bim7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pv8b3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p076w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bcmbj"]
+
+[node name="DialoguePortrait" type="Node2D"]
+position = Vector2(120, 540)
+script = ExtResource("1_8bim7")
+
+[node name="Base" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pv8b3")
+position = Vector2(0, -150)
+
+[node name="PlayerGear" type="Node2D" parent="."]
+
+[node name="Face" type="Sprite2D" parent="PlayerGear"]
+material = SubResource("ShaderMaterial_p076w")
+position = Vector2(0, -150)
+
+[node name="Hair" type="Sprite2D" parent="PlayerGear"]
+z_index = 20
+material = SubResource("ShaderMaterial_bcmbj")
+position = Vector2(0, -150)

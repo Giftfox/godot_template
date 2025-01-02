@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://y8v2w7nlcl5b"]
+
+[ext_resource type="PackedScene" uid="uid://bultdgegx35d4" path="res://src/scenes/room_control.tscn" id="1_gbg1a"]
+
+[node name="CopyPasteableRoom" type="Node2D"]
+
+[node name="RoomControl" parent="." instance=ExtResource("1_gbg1a")]
+has_player = false
+maintain_music = false
+force_clear_music = true
+music_mod = 1.0
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Tiles" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="ActorsUnder" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Collision" type="Node2D" parent="."]
+
+[editable path="RoomControl"]

@@ -1,0 +1,29 @@
+[gd_resource type="Shader" format=3 uid="uid://cd6g62u2tvfx8"]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec4 color[10]: source_color;
+uniform vec4 color_to[10]: source_color;
+uniform float intensity;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
+
+const float precision = 0.001;
+
+void fragment() {
+	vec4 new_color;
+	new_color.a = 0.0;
+	vec4 base_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	for (int i = 0; i < 100; i++)
+	{
+		if (i < color.length())
+		{
+			if (distance(base_color, color[i]) <= precision)
+			{
+				new_color = mix(base_color, color_to[i], intensity);
+				break;
+			}
+		}
+	}
+	COLOR = new_color;
+}"
