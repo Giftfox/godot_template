@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckqo0xoovivqs"]
+
+[ext_resource type="Script" path="res://src/base/tracking_area2d.gd" id="1_u76xp"]
+
+[node name="TrackingArea2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_u76xp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

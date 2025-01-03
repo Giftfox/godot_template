@@ -1,3 +1,5 @@
+@tool
+
 extends Node
 
 const TILE_SIZE = 24
@@ -25,6 +27,10 @@ var player_x_offset := 0
 var player_y_offset := 0
 
 var mouse_pos := Vector2.ZERO
+var mouse_pos_shrink := Vector2.ZERO
+var buffer_mouse := false
+enum mouse_modes {normal, gui_only, game_only, disabled}
+var mouse_mode = mouse_modes.normal
 
 var database_script = preload("res://src/scripts/Database.gd")
 @onready var database = database_script.new()
@@ -73,7 +79,10 @@ func _physics_process(delta):
 		if hitlag_time <= 0:
 			hitlag_time = -1
 			set_pause_state(old_pausestate, true)
+			
 	mouse_pos = get_viewport().get_mouse_position()
+	mouse_pos_shrink = get_viewport().get_mouse_position() / VIEW_SCALE
+	buffer_mouse = false
 			
 func vec_scale_x_to(v: Vector2, x: float) -> Vector2:
 	v = v.normalized()

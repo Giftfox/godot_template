@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhaiosrapqfsg"]
+
+[ext_resource type="Script" path="res://src/parts/scrollbox.gd" id="1_kklqm"]
+[ext_resource type="PackedScene" uid="uid://daao0nrsyylem" path="res://src/ui/rectangle_visual.tscn" id="2_oe88q"]
+[ext_resource type="PackedScene" uid="uid://dkuj2lkudfoon" path="res://src/parts/mouse/clickzone.tscn" id="3_2u60j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8cdn"]
+size = Vector2(6, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxrbv"]
+size = Vector2(6, 8)
+
+[node name="Scrollbox" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 132.0
+offset_bottom = 111.0
+mouse_filter = 1
+script = ExtResource("1_kklqm")
+allow_scrollwheel = null
+margin = Vector2(4, 4)
+auto_hide = false
+pip_size = 8
+
+[node name="InsideBox" type="Node2D" parent="."]
+
+[node name="Bar" parent="." instance=ExtResource("2_oe88q")]
+position = Vector2(122, 4)
+size = Vector2(6, 102)
+fill_color = Color(0, 0, 0, 1)
+
+[node name="Clickzone" parent="Bar" instance=ExtResource("3_2u60j")]
+position = Vector2(-66, -4)
+
+[node name="Coll" parent="Bar/Clickzone" index="0"]
+position = Vector2(69, 55)
+shape = SubResource("RectangleShape2D_x8cdn")
+
+[node name="Pip" parent="Bar" instance=ExtResource("2_oe88q")]
+position = Vector2(0, 1)
+size = Vector2(6, 8)
+fill_color = Color(1, 1, 1, 1)
+
+[node name="Clickzone" parent="Bar/Pip" instance=ExtResource("3_2u60j")]
+position = Vector2(-1, -130)
+
+[node name="Coll" parent="Bar/Pip/Clickzone" index="0"]
+position = Vector2(4, 134)
+shape = SubResource("RectangleShape2D_yxrbv")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="left_clicked" from="Bar/Clickzone" to="." method="_on_bar_left_clicked"]
+[connection signal="left_clicked" from="Bar/Pip/Clickzone" to="." method="_on_pip_left_clicked"]
+
+[editable path="Bar/Clickzone"]
+[editable path="Bar/Pip/Clickzone"]

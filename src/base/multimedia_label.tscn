@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://st80tkntxryk"]
+
+[ext_resource type="FontFile" uid="uid://c5hon06kgdhl0" path="res://assets/fonts/m5x7.ttf" id="1_jui0s"]
+[ext_resource type="Script" path="res://src/base/multimedia_label.gd" id="1_tvm41"]
+
+[sub_resource type="FontVariation" id="FontVariation_x1t6a"]
+base_font = ExtResource("1_jui0s")
+
+[node name="MultimediaLabel" type="RichTextLabel"]
+offset_right = 312.0
+offset_bottom = 100.0
+theme_override_fonts/normal_font = SubResource("FontVariation_x1t6a")
+bbcode_enabled = true
+script = ExtResource("1_tvm41")

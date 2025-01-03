@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dasy1w5sg3lvw"]
+
+[ext_resource type="Script" path="res://src/scenes/main/input_detector.gd" id="1_5p8ws"]
+
+[node name="InputDetector" type="Area2D" groups=["input_detector", "no_destroy"]]
+script = ExtResource("1_5p8ws")
